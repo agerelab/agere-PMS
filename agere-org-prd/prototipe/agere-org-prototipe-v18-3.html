@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>agere/org · Prototipe v18.5</title>
+<title>agere/org · Prototipe v18.3</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -1342,81 +1342,6 @@ body.ag-on #content .page{padding-bottom:128px}
 .ds-prose b,.ds-prose strong{font-weight:600;color:var(--fg-emphasis)}
 @media(max-width:767px){.scrim.to-right{padding:0}.dsheet{width:100vw;border-radius:0;border:0}.ds-b{padding:24px 20px 48px}.dtl-meta span:not(.nowrap){display:none}}
 @media (prefers-reduced-motion:reduce){.dsheet{animation:none}}
-/* v18.4 · Chat (D48): attachments, reactions, inline edit, members, invite */
-.msg{position:relative}
-.av-btn,.who-n{padding:0;border:0;background:none;color:inherit;font:inherit;cursor:pointer}
-.who-n{font-weight:600;color:var(--fg-emphasis)}
-.who-n:hover{text-decoration:underline}
-.who-n:focus-visible{outline:2px solid var(--fg-emphasis);outline-offset:2px;border-radius:var(--r-sm)}
-.msg .tx .lnk{color:var(--fg-emphasis);text-decoration:underline;text-underline-offset:2px;word-break:break-all}
-.msg-del .tx{font-style:italic}
-.sysmsg{display:flex;align-items:center;gap:8px;padding:4px 8px 4px 52px;font-size:13px;line-height:20px;color:var(--fg-subtle)}
-.att{display:grid;gap:8px;margin-top:8px;max-width:480px}
-.att-imgs{display:grid;gap:4px;border-radius:var(--r-lg);overflow:hidden}
-.att-imgs.n1{grid-template-columns:1fr;max-width:360px}
-.att-imgs.n2,.att-imgs.n4{grid-template-columns:1fr 1fr}
-.att-imgs.n3{grid-template-columns:2fr 1fr 1fr}
-.att-img{position:relative;display:block;padding:0;border:0;background:var(--bg-muted);cursor:zoom-in;aspect-ratio:16/10;overflow:hidden}
-.att-imgs.n1 .att-img{aspect-ratio:auto;max-height:240px}
-.att-img img{width:100%;height:100%;object-fit:cover;display:block}
-.att-img:focus-visible{outline:2px solid var(--fg-emphasis);outline-offset:-2px}
-.att-more{position:absolute;inset:0;display:grid;place-items:center;background:rgb(0 0 0 / .5);color:#fff;font-size:20px;font-weight:600}
-.att-vid{display:grid;gap:4px;margin:0;max-width:360px}
-.att-vid video{width:100%;max-height:240px;border-radius:var(--r-lg);background:#000}
-.att-vid figcaption{display:flex;gap:8px;justify-content:space-between}
-.att-file,.att-link{display:flex;align-items:center;gap:12px;padding:8px 12px 8px 8px;border:1px solid var(--border-default);border-radius:var(--r-lg);background:var(--bg-surface);max-width:360px;min-width:0}
-.att-link{color:inherit;text-decoration:none;padding:8px}
-.att-link:hover,.att-file:hover{background:var(--bg-muted)}
-.att-link:focus-visible{outline:2px solid var(--fg-emphasis);outline-offset:2px}
-.att-fic{position:relative;display:grid;place-items:center;width:40px;height:40px;border-radius:var(--r-md);background:var(--bg-muted);color:var(--fg-subtle);flex:none}
-.att-fic b{position:absolute;bottom:3px;font-size:8px;line-height:10px;font-weight:700;letter-spacing:.02em}
-.att-fn,.att-lt{font-weight:600;color:var(--fg-emphasis)}
-.att-lth{width:72px;height:56px;border-radius:var(--r-md);overflow:hidden;background:var(--bg-muted);flex:none;display:grid;place-items:center}
-.att-lth img{width:100%;height:100%;object-fit:cover}
-.att-ldom{font-size:20px;font-weight:600;color:var(--fg-subtle)}
-.att-lx{color:var(--fg-subtle);align-self:flex-start}
-.rx{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
-.rx-p{display:inline-flex;align-items:center;gap:4px;height:24px;padding:0 8px;border:1px solid var(--border-default);border-radius:var(--r-full);background:var(--bg-surface);font-size:12px;line-height:16px;color:var(--fg-default);cursor:pointer}
-.rx-p:hover{background:var(--bg-muted)}
-.rx-p[aria-pressed="true"]{border-color:var(--fg-emphasis);background:var(--bg-subtle);color:var(--fg-emphasis);font-weight:600}
-.rx-p:focus-visible{outline:2px solid var(--fg-emphasis);outline-offset:2px}
-.rx-add{color:var(--fg-subtle);opacity:0}
-.msg:hover .rx-add,.msg:focus-within .rx-add{opacity:1}
-@media (hover:none){.rx-add{opacity:1}}
-.emo{font-size:14px;line-height:1}
-.mi .emo{width:16px;text-align:center}
-.msg-ed{display:grid;gap:8px;margin-top:4px}
-.msg-ed textarea{width:100%;min-height:64px;padding:8px 12px;border:1px solid var(--border-emphasis);border-radius:var(--r-md);background:var(--bg-surface);font:inherit;resize:vertical}
-.msg-ed-f{display:flex;align-items:center;gap:8px}
-.msg.editing{background:var(--bg-subtle)}
-.stage{display:flex;flex-wrap:wrap;gap:8px;padding:8px 8px 0}
-.st-i{display:flex;align-items:center;gap:8px;max-width:240px;height:48px;padding:4px 4px 4px 4px;border:1px solid var(--border-default);border-radius:var(--r-md);background:var(--bg-surface)}
-.st-i img,.st-ic{width:40px;height:40px;border-radius:var(--r-sm);object-fit:cover;flex:none}
-.st-ic{display:grid;place-items:center;background:var(--bg-muted);color:var(--fg-subtle)}
-.mem-inv{padding:0 16px 8px}
-.mem-row{display:flex;align-items:center;gap:12px;padding:6px 8px;border-radius:var(--r-md)}
-.mem-row .icon-btn{opacity:0}.mem-row:hover .icon-btn,.mem-row:focus-within .icon-btn{opacity:1}
-@media (hover:none){.mem-row .icon-btn{opacity:1}}
-.inv-list{display:grid;gap:2px;max-height:320px;overflow:auto;margin:12px 0 0;padding:0;border:0}
-.inv-row{display:flex;align-items:center;gap:12px;padding:8px;border-radius:var(--r-md);cursor:pointer}
-.inv-row:hover{background:var(--bg-muted)}
-.inv-row input{width:16px;height:16px;accent-color:var(--brand-default);flex:none}
-.thr-body{display:grid;gap:4px;align-content:start}
-.lb{width:min(1040px,calc(100vw - 32px));max-height:calc(100vh - 32px);display:flex;flex-direction:column;padding:0;overflow:hidden}
-.lb-h{display:flex;align-items:center;gap:12px;height:52px;padding:0 8px 0 16px;border-bottom:1px solid var(--border-default)}
-.lb-b{flex:1;display:grid;place-items:center;overflow:auto;padding:16px;background:var(--bg-muted)}
-.lb-b img{max-width:100%;max-height:calc(100vh - 140px);object-fit:contain}
-.help.err{color:var(--error-on-surface,var(--error-solid))}
-.minw0{min-width:0}
-/* message toolbar sits inside the message: at -12px it was clipped by the log and covered by the channel header */
-.msg .ma{top:4px;right:8px}
-/* chat log: `grid + align-content:end` pushed overflowing messages above the scrollable area (the oldest were unreachable);
-   a flex column with margin-top:auto keeps short logs at the bottom and long logs fully scrollable */
-.log{display:flex;flex-direction:column;align-content:normal}
-.log>:first-child{margin-top:auto}
-.av-btn{align-self:flex-start;display:block;line-height:0;flex:none}
-@media(max-width:767px){.chat-h .chh-l,.chat-h .col .caption{display:none}.chat-h .btn:has(.chh-l){width:32px;padding:0;justify-content:center}}
-@media(max-width:767px){.chat-comp .bar .caption{display:none}}
 
 
 </style>
@@ -2022,7 +1947,7 @@ function renderDock(){
   <label class="row" style="justify-content:space-between"><span>Label rilis di layar</span><button class="switch" role="switch" aria-checked="${S.relTags}" data-a="pp-tags" aria-label="Label rilis"></button></label>
   <label class="row" style="justify-content:space-between"><span>Mode organisasi baru (onboarding)</span><button class="switch" role="switch" aria-checked="${S.welcome}" data-a="pp-welcome" aria-label="Mode organisasi baru"></button></label>
   <button class="btn btn-outline" data-a="audit-sheet">${ic("sparkles")}Lihat catatan audit & redesign</button>
- </div>`:""}<div class="pdock"><span class="pd" aria-hidden="true"></span><span>Prototipe v18.5</span><button data-a="dock" aria-expanded="${S.dock}">${S.dock?"Tutup":"Kontrol"}</button><button data-a="audit-sheet">Audit</button></div>`;
+ </div>`:""}<div class="pdock"><span class="pd" aria-hidden="true"></span><span>Prototipe v18.3</span><button data-a="dock" aria-expanded="${S.dock}">${S.dock?"Tutup":"Kontrol"}</button><button data-a="audit-sheet">Audit</button></div>`;
 }
 
 /* ---------- guide (Panduan) ---------- */
@@ -2299,12 +2224,12 @@ function confirmDlg({title,body,verb,fn,danger=true,input}){
 IN.cfin=el=>{$("#cf-go").disabled=el.value.trim()!==el.dataset.need;};
 
 /* ---------- share (Bagikan) ---------- */
-function shareDlg(pid,sid,o={}){
+function shareDlg(pid,sid){
  const p=pid?projById(pid):null,s=sid?spaceById(sid):spaceById(p.space);
  const view=p?({daftar:"Daftar",papan:"Papan",ringkasan:"Ringkasan",kalender:"Kalender",timeline:"Timeline"}[S.p.tab]||"Daftar"):null;
  const org=p?(p.access!=="team"&&s.access==="org"):s.access==="org";
  const ks=p?projMembers(p):MEMBERS.filter(m=>m.status==="aktif"&&spaceView(s,m.k)).map(m=>m.k);
- openDlg(dlg({title:o.chat&&p?L("Share project","Bagikan proyek"):p?"Bagikan tampilan ini":"Bagikan space",desc:o.chat&&p?L(`People in this channel are the people who can open ${esc(p.name)}.`,`Anggota channel ini adalah orang yang bisa membuka ${esc(p.name)}.`):p?`Dibagikan sebagai satu tampilan: ${esc(p.name)}, ${view}`:`Proyek di ${esc(s.name)} ikut akses ini`,body:`
+ openDlg(dlg({title:p?"Bagikan tampilan ini":"Bagikan space",desc:p?`Dibagikan sebagai satu tampilan: ${esc(p.name)}, ${view}`:`Proyek di ${esc(s.name)} ikut akses ini`,body:`
  <div class="row gap12"><span class="av sys md">${ic("link")}</span><div class="col grow"><span class="strong">Tautan privat</span><span class="caption muted">Hanya bisa dibuka anggota yang sudah punya akses</span></div><button class="btn btn-outline btn-sm" data-a="copylink">${ic("copy")}Salin tautan</button></div>
  <div style="border-top:1px solid var(--border-default);padding-top:16px;display:grid;gap:10px"><span class="h3">Bagikan dengan</span>
  <div class="row gap12 card flat" style="padding:12px 14px"><span class="av md" style="border-radius:8px">${initials(ORG.name)}</span><div class="col grow"><span class="row"><span class="strong">${ORG.name}</span><span class="badge sm outline">Anggota organisasi</span></span><button class="btn-link caption" style="text-decoration:none;color:var(--fg-subtle)" data-a="share-list">${org?"Semua anggota bisa mengedit":`${ks.length} orang punya akses`}. Lihat daftar</button></div>${avs(ks)}<button class="switch" role="switch" aria-checked="${org}" data-a="share-org" data-pid="${pid||""}" data-sid="${sid||""}" aria-label="Bagikan dengan seluruh ${ORG.name}"></button></div>
@@ -2603,7 +2528,7 @@ ROUTES.chat.after=()=>{const l=$("#chatlog");if(l)l.scrollTop=l.scrollHeight;};
 ROUTES["doc-semua"]={sec:"doc",t:"Semua Doc",crumbs:()=>[["Doc","doc-semua"],["Semua Doc"]],f:pDocs};
 ROUTES.doc={sec:"doc",t:"Doc",title:()=>{const d=DOCS.find(d=>d.id===S.p.did);return d?docTitle(d):"Doc";},crumbs:()=>{const d=DOCS.find(x=>x.id===S.p.did);if(!d)return[["Doc"]];const f=FOLDERS.find(x=>x.id===d.folder);return[["Doc","doc-semua"],...(f?[[f.name,"doc-semua"]]:[]),[docTitle(d)]];},f:pDoc};
 function pDocs(){
- const st=stateOf({skel:"table",what:"Doc",empty:{ill:"empty",title:"Belum ada Doc",desc:"Tulis SOP, brief, atau notulen di satu tempat dengan Doc baru di kanan atas. Punya dokumen di tempat lain? Pilih Impor."}});   /* header already holds Impor and Doc baru (D32: one action, one place) */
+ const st=stateOf({skel:"table",what:"Doc",empty:{ill:"empty",title:"Belum ada Doc",desc:"Tulis SOP, brief, atau notulen di satu tempat. Punya dokumen di tempat lain? Impor saja.",action:`<button class="btn btn-outline" data-a="doc-import">${ic("upload")}Impor</button><button class="btn btn-primary" data-a="doc-new">${ic("plus")}Doc baru</button>`}});
  const grp=[...FOLDERS.map(f=>({f,ds:DOCS.filter(d=>d.folder===f.id)})),{f:{id:null,name:"Tanpa folder"},ds:DOCS.filter(d=>!d.folder)}].filter(g=>g.ds.length);
  return `<div class="page">${pageHead("Semua Doc",isIdeal()?`${DOCS.length} dokumen di ${FOLDERS.length} folder.`:"",`<button class="btn btn-outline" data-a="doc-import">${ic("upload")}Impor</button><button class="btn btn-primary" data-a="doc-new">${ic("plus")}Doc baru</button>`,{tags:relTag(3)})}
  ${st||`<div class="card tbl-wrap"><table class="tbl"><thead><tr><th>Nama</th><th>Terkait proyek</th><th>Pemilik</th><th>Diperbarui</th><th class="c-act"><span class="sr">Tindakan</span></th></tr></thead>${grp.map(g=>`<tbody><tr><th colspan="5" scope="rowgroup" style="background:var(--bg-muted);height:36px"><span class="row gap4">${ic(g.f.id?"folder":"doc",14)}${esc(g.f.name)} <span class="count">${g.ds.length}</span></span></th></tr>${g.ds.map(d=>`<tr><td><button class="row strong" style="text-align:left" data-go="doc" data-did="${d.id}">${ic("doc")}<span>${esc(docTitle(d))}</span>${srcExt(d)?`<span class="badge sm outline">${srcExt(d)}</span>`:""}</button></td><td>${d.projects.length?`<span class="row gap4">${d.projects.map(pid=>projById(pid)).filter(p=>p&&canView(p)).map(p=>`<span data-tip="${esc(p.name)}">${ptile(p)}</span>`).join("")}</span>`:'<span class="muted">Tidak ada</span>'}</td><td><span class="row">${av(d.by)}${esc(first(d.by))}</span></td><td class="muted">${d.at}</td><td class="c-act"><button class="btn btn-ghost icon-btn tiny" data-a="docmenu" data-did="${d.id}" aria-haspopup="menu" aria-label="Tindakan ${esc(d.name)}">${ic("more",14)}</button></td></tr>`).join("")}</tbody>`).join("")}</table></div>`}</div>`;
@@ -3241,141 +3166,6 @@ ACT["add-show"]=el=>{S.addOpen=el.dataset.for;const t=taskById(el.dataset.t);if(
 ACT["add-hide"]=el=>{const id=el.dataset.for;S.addOpen=null;const t=taskById(S.taskId);if(id==="ck-in")ckRedraw(t.id);else $("#tm-sub").innerHTML=subBlock(t);$(`[data-a="add-show"][data-for="${id}"]`)?.focus();};
 document.addEventListener("keydown",e=>{if((e.target.id==="ck-in"||e.target.id==="tsub-in")&&e.key==="Escape"){e.preventDefault();e.stopPropagation();ACT["add-hide"]({dataset:{for:e.target.id}});}},true);
 
-/* ================= v18.4 · Chat: invite, attachments, reactions, copy, DM from a channel, edit and delete =================
-   D48, PRD-14 v1.5. Loaded after 69-full (threadPane) and before 6f-agent (which decorates chatPane). */
-Object.assign(P,{
- clip:'<path d="m21.4 11.1-8.9 8.9a5.5 5.5 0 0 1-7.8-7.8l8.9-8.9a3.7 3.7 0 0 1 5.2 5.2l-8.9 8.9a1.8 1.8 0 0 1-2.6-2.6l8.2-8.2"/>',
- smile:'<circle cx="12" cy="12" r="9"/><path d="M8.5 14.5a4.5 4.5 0 0 0 7 0"/><path d="M9 9.5h.01M15 9.5h.01"/>',
- video:'<rect x="2.5" y="6" width="13.5" height="12" rx="2"/><path d="m16 10.5 5.5-3.5v10L16 13.5"/>',
- file:'<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/>'});
-S.stage={};S.draft={};S.msgEdit=null;
-const ATT_MAX=10,ATT_MB=25,VID_MB=25;   /* PRD-07 rule 3: ≤ 25 MB per file [Hypothesis]; a higher video limit is open (PRD-14 v1.5 Q7) */
-const URL_RE=/https?:\/\/[^\s<>"']+[^\s<>"'.,;:!?)]/g;
-const fSize=b=>{if(b==null)return"";if(b<1024)return `${b} B`;const u=b<1024*1024?[b/1024,"KB"]:[b/1048576,"MB"];const n=u[0]<10?Math.round(u[0]*10)/10:Math.round(u[0]);return `${String(n).replace(".",S.lang==="en"?".":",")} ${u[1]}`;};
-const fExt=n=>(n.split(".").pop()||"").slice(0,4).toUpperCase();
-/* ---- demo previews (a real server unfurls Open Graph data; see PRD-14 v1.5) ---- */
-const svgUri=s=>"data:image/svg+xml;utf8,"+encodeURIComponent(s);
-const THUMB_MOOD=svgUri(`<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400"><rect width="640" height="400" fill="#F4F1EC"/><rect x="24" y="24" width="280" height="200" rx="12" fill="#1F3A5F"/><rect x="320" y="24" width="296" height="96" rx="12" fill="#E8B04B"/><rect x="320" y="136" width="140" height="88" rx="12" fill="#D96C4F"/><rect x="476" y="136" width="140" height="88" rx="12" fill="#7FA38A"/><rect x="24" y="240" width="184" height="136" rx="12" fill="#C9D6E3"/><rect x="224" y="240" width="392" height="136" rx="12" fill="#FFFFFF"/><rect x="248" y="268" width="220" height="18" rx="4" fill="#1F3A5F"/><rect x="248" y="298" width="300" height="10" rx="3" fill="#9AA5B1"/><rect x="248" y="318" width="260" height="10" rx="3" fill="#9AA5B1"/><circle cx="116" cy="308" r="36" fill="#1F3A5F"/></svg>`);
-const THUMB_FIG=svgUri(`<svg xmlns="http://www.w3.org/2000/svg" width="240" height="160" viewBox="0 0 240 160"><rect width="240" height="160" fill="#1E1E1E"/><rect x="20" y="20" width="200" height="120" rx="6" fill="#2C2C2C"/><rect x="36" y="36" width="96" height="88" rx="4" fill="#E8B04B"/><rect x="144" y="36" width="60" height="24" rx="4" fill="#FFFFFF"/><rect x="144" y="68" width="60" height="8" rx="2" fill="#8A8A8A"/><rect x="144" y="84" width="44" height="8" rx="2" fill="#8A8A8A"/><rect x="144" y="104" width="60" height="20" rx="10" fill="#0D99FF"/></svg>`);
-const KNOWN_LINKS={"https://www.figma.com/file/q4-banner":{title:"Banner Q4 — layout",desc:{en:"Figma design file, 4 pages",id:"File desain Figma, 4 halaman"},thumb:THUMB_FIG}};
-function linkAtt(url){let u;try{u=new URL(url);}catch(e){return null;}const k=KNOWN_LINKS[url]||{};const seg=decodeURIComponent(u.pathname.split("/").filter(Boolean).pop()||"").replace(/[-_]+/g," ").trim();
- return {type:"link",url,domain:u.hostname.replace(/^www\./,""),title:k.title||(seg?seg[0].toUpperCase()+seg.slice(1):u.hostname.replace(/^www\./,"")),desc:k.desc||"",thumb:k.thumb||null};}
-{const sd=MSGS["c-sd"];if(sd&&!sd.some(m=>m.att)){sd[0].rx={"👍":["sari","sarahw"],"🎉":["dimas"]};sd[2].att=[{type:"image",name:"moodboard-q4.png",size:842000,url:THUMB_MOOD}];sd[3].att=[{type:"file",name:"brief-presentasi-investor.pdf",size:1240000}];
- sd.push({who:"sari",at:"09.52",t:"Referensi layout banner di Figma: https://www.figma.com/file/q4-banner",att:[linkAtt("https://www.figma.com/file/q4-banner")]});}}
-/* ---- who is in a conversation ---- */
-function chanPeople(c){const act=k=>(MEMBERS.find(m=>m.k===k)||{}).status==="aktif";
- const base=c.kind==="project"?projMembers(projById(c.pid)):c.kind==="dm"?[S.me,...dmWho(c)]:c.restricted?[...teamById("t-desain").members,...teamById("t-mkt").members]:MEMBERS.filter(m=>m.status==="aktif").map(m=>m.k);
- return [...new Set([...base,...(c.extra||[])])].filter(k=>k===S.me||act(k));}
-const chanInviteKind=c=>c.kind==="project"?"share":c.kind==="channel"&&c.restricted?"invite":null;   /* #umum holds everyone; DMs start a new DM instead */
-const chanCanInvite=c=>{const k=chanInviteKind(c);return k==="share"||k==="invite"&&(chanPeople(c).includes(S.me)||isAdmin());};
-const msgAt=(c,i,r)=>{const m=(MSGS[c]||[])[+i];return r===""||r==null?m:((m&&m.replies)||[])[+r];};
-const msgKey=(c,i,r)=>`${c}|${i}|${r==null?"":r}`;
-const msgPlain=m=>(m.t||"").replace(/\{(T-\d+)\}/g,(x,id)=>{const t=taskById(id);return t?`${id} ${t.title}`:id;});
-const linkify=h=>h.replace(URL_RE,u=>`<a class="lnk" href="${u}" target="_blank" rel="noopener noreferrer">${u}</a>`);
-/* ---- rendering ---- */
-const EMO=()=>[["👍",L("Thumbs up","Setuju")],["❤️",L("Love","Suka")],["😂",L("Funny","Lucu")],["🎉",L("Celebrate","Rayakan")],["👀",L("Looking into it","Sedang dilihat")],["✅",L("Done","Beres")]];   /* PRD-14: 6 fixed reaction emoji */
-function attHtml(m,c,i,r){const a=(m.att||[]).filter(Boolean);if(!a.length)return"";const d=`data-c="${c}" data-i="${i}" data-r="${r==null?"":r}"`;
- const imgs=a.filter(x=>x.type==="image"),vids=a.filter(x=>x.type==="video"),files=a.filter(x=>x.type==="file"),links=a.filter(x=>x.type==="link");
- return `<div class="att">${imgs.length?`<div class="att-imgs n${Math.min(imgs.length,4)}">${imgs.slice(0,4).map((x,j)=>`<button class="att-img" data-a="att-view" ${d} data-j="${a.indexOf(x)}" aria-label="${L("View image","Lihat gambar")} ${esc(x.name)}"><img src="${x.url}" alt="${esc(x.name)}" loading="lazy">${j===3&&imgs.length>4?`<span class="att-more">+${imgs.length-4}</span>`:""}</button>`).join("")}</div>`:""}${vids.map(x=>`<figure class="att-vid"><video src="${x.url}" controls preload="metadata" aria-label="${esc(x.name)}"></video><figcaption class="caption muted"><span class="ell" data-notr>${esc(x.name)}</span><span class="nowrap">${fSize(x.size)}</span></figcaption></figure>`).join("")}${files.map(x=>`<div class="att-file"><span class="att-fic" aria-hidden="true">${ic("file",20)}<b>${esc(fExt(x.name))}</b></span><span class="col minw0 grow"><span class="sm ell att-fn" data-notr>${esc(x.name)}</span><span class="caption muted">${esc(fExt(x.name))} ${L("file","file")}, ${fSize(x.size)}</span></span>${x.url?`<a class="btn btn-ghost btn-xs icon-btn" href="${x.url}" download="${esc(x.name)}" aria-label="${L("Download","Unduh")} ${esc(x.name)}" data-tip="${L("Download","Unduh")}">${ic("download",14)}</a>`:""}</div>`).join("")}${links.map(x=>`<a class="att-link" href="${esc(x.url)}" target="_blank" rel="noopener noreferrer"><span class="att-lth" aria-hidden="true">${x.thumb?`<img src="${x.thumb}" alt="">`:`<span class="att-ldom">${esc((x.domain||"?")[0].toUpperCase())}</span>`}</span><span class="col minw0 grow"><span class="caption muted ell" data-notr>${esc(x.domain)}</span><span class="sm att-lt ell" data-notr>${esc(x.title||x.url)}</span>${x.desc?`<span class="caption muted ell" data-notr>${esc(typeof x.desc==="object"?L(x.desc.en,x.desc.id):x.desc)}</span>`:""}</span><span class="att-lx" aria-hidden="true">${ic("external",14)}</span></a>`).join("")}</div>`;}
-function rxHtml(m,c,i,r){const e=Object.entries(m.rx||{}).filter(([k,v])=>v.length);if(!e.length)return"";const d=`data-c="${c}" data-i="${i}" data-r="${r==null?"":r}"`;
- return `<div class="rx" role="group" aria-label="${L("Reactions","Reaksi")}">${e.map(([emo,who])=>{const mine=who.includes(S.me);const names=who.map(k=>k===S.me?L("you","Anda"):first(k)).join(", ");
-  return `<button class="rx-p" data-a="rx" ${d} data-e="${emo}" aria-pressed="${mine}" aria-label="${emo} ${who.length}: ${esc(names)}" data-tip="${esc(names)}"><span class="emo" aria-hidden="true">${emo}</span><span class="num" aria-hidden="true">${who.length}</span></button>`;}).join("")}<button class="rx-p rx-add" data-a="rx-pick" ${d} aria-haspopup="menu" aria-label="${L("Add reaction","Tambah reaksi")}" data-tip="${L("Add reaction","Tambah reaksi")}">${ic("smile",14)}</button></div>`;}
-function msgRow(c,m,i,r,o={}){
- const d=`data-c="${c.id}" data-i="${i}" data-r="${r==null?"":r}"`;const reps=(m.replies||[]).filter(x=>!x.deleted);
- const thr=r==null&&!o.inThread&&!o.embedded&&reps.length?`<button class="thr-link" data-a="thread" data-c="${c.id}" data-i="${i}">${avs(reps.map(x=>x.who),3)}${L(`${reps.length} ${reps.length===1?"reply":"replies"}`,`${reps.length} balasan`)}</button>`:"";
- if(m.sys==="invite")return `<div class="sysmsg" role="note">${ic("userplus",14)}<span>${L(`${esc(first(m.by))} added ${esc(m.ks.map(first).join(", "))}`,`${esc(first(m.by))} menambahkan ${esc(m.ks.map(first).join(", "))}`)}</span><span class="caption muted">${esc(m.at)}</span></div>`;
- if(m.deleted)return r==null&&reps.length?`<div class="msg msg-del">${av(m.who,"md")}<div class="grow minw0"><div class="who"><b>${esc(pname(m.who))}</b><span>${esc(m.at)}</span></div><div class="tx muted">${L("This message was deleted.","Pesan ini dihapus.")}</div>${thr}</div></div>`:"";
- const editing=S.msgEdit===msgKey(c.id,i,r);
- const body=editing?`<div class="msg-ed"><label class="sr" for="msg-ed">${L("Edit message","Edit pesan")}</label><textarea id="msg-ed" rows="2" ${d}>${esc(m.t)}</textarea><div class="msg-ed-f"><span class="caption muted grow">${L("Enter to save, Esc to cancel","Enter untuk simpan, Esc untuk batal")}</span><button class="btn btn-ghost btn-xs" data-a="msg-ed-cancel">${L("Cancel","Batal")}</button><button class="btn btn-outline btn-xs" data-a="msg-ed-save" ${d}>${L("Save","Simpan")}</button></div></div>`:(m.t?`<div class="tx">${linkify(msgHtml(m.t))}</div>`:"");
- const bar=editing?"":`<div class="ma" role="toolbar" aria-label="${L("Message actions","Tindakan pesan")}"><button class="btn btn-ghost btn-xs icon-btn" data-a="rx-pick" ${d} aria-haspopup="menu" aria-label="${L("Add reaction","Tambah reaksi")}" data-tip="${L("Add reaction","Tambah reaksi")}">${ic("smile",14)}</button>${r==null&&!o.inThread?`<button class="btn btn-ghost btn-xs icon-btn" data-a="thread" data-c="${c.id}" data-i="${i}" aria-label="${L("Reply in thread","Balas di utas")}" data-tip="${L("Reply in thread","Balas di utas")}">${ic("chat",14)}</button><button class="btn btn-ghost btn-xs icon-btn" data-a="msg2task" data-c="${c.id}" data-i="${i}" aria-label="${L("Make task","Jadikan tugas")}" data-tip="${L("Make task","Jadikan tugas")}">${ic("subtask",14)}</button>`:""}<button class="btn btn-ghost btn-xs icon-btn" data-a="msg-more" ${d} aria-haspopup="menu" aria-label="${L("More actions","Tindakan lain")}" data-tip="${L("More actions","Tindakan lain")}">${ic("dots",14)}</button></div>`;
- return `<div class="msg ${editing?"editing":""}" id="m-${c.id}-${i}${r==null?"":"-"+r}"><button class="av-btn" data-a="person" data-k="${m.who}" tabindex="-1" aria-hidden="true">${av(m.who,"md")}</button><div class="grow minw0"><div class="who"><button class="who-n" data-a="person" data-k="${m.who}" aria-haspopup="menu">${esc(pname(m.who))}</button><span>${esc(m.at)}</span>${m.edited?`<span class="caption muted">${L("(edited)","(diedit)")}</span>`:""}</div>${body}${editing?"":attHtml(m,c.id,i,r)}${editing?"":rxHtml(m,c.id,i,r)}${thr}</div>${bar}</div>`;}
-function stageHtml(c){const st=S.stage[c.id]||[];if(!st.length)return"";
- return `<ul class="stage" aria-label="${L("Attachments to send","Lampiran yang akan dikirim")}">${st.map((x,j)=>`<li class="st-i">${x.type==="image"?`<img src="${x.url}" alt="">`:`<span class="st-ic" aria-hidden="true">${ic(x.type==="video"?"video":x.type==="link"?"link":"file",16)}</span>`}<span class="col minw0"><span class="sm ell" data-notr>${esc(x.type==="link"?x.domain:x.name)}</span><span class="caption muted ell">${x.type==="link"?esc(x.title):fSize(x.size)}</span></span><button class="btn btn-ghost btn-xs icon-btn" data-a="st-rm" data-c="${c.id}" data-j="${j}" aria-label="${L("Remove","Hapus")} ${esc(x.type==="link"?x.url:x.name)}">${ic("x",14)}</button></li>`).join("")}</ul>`;}
-function membersHtml(c){const ppl=chanPeople(c);   /* Undang lives in the channel header only (D32) */
- return `<aside class="members" aria-label="${L("Members","Anggota")}"><div class="ph-head"><h2 class="h3 grow">${L("Members","Anggota")}</h2><span class="caption muted num">${ppl.length}</span></div><div class="body">${ppl.map(k=>`<div class="mem-row">${av(k)}<span class="grow ell sm">${esc(pname(k))}${k===S.me?` ${L("(you)","(Anda)")}`:""}</span>${k!==S.me?`<button class="btn btn-ghost btn-xs icon-btn" data-a="dm-open" data-k="${k}" aria-label="${L("Message","Kirim pesan ke")} ${esc(pname(k))}" data-tip="${L("Send message","Kirim pesan")}">${ic("chat",14)}</button>`:""}</div>`).join("")}</div></aside>`;}
-chatPane=function(c,embedded){
- const ms=MSGS[c.id]||[];
- const head=c.kind==="project"?`${ptile(projById(c.pid))}<div class="col grow"><h1 class="h3">${esc(c.name)}</h1><span class="caption muted">${L("Project channel, follows project access","Channel proyek, mengikuti akses proyek")}</span></div>`:c.kind==="dm"?`${dmWho(c).length>1?`<span class="avs">${dmWho(c).slice(0,2).map(k=>av(k)).join("")}</span>`:av(dmWho(c)[0],"md")}<div class="col grow"><h1 class="h3">${esc(chName(c))}</h1><span class="caption muted">${c.who.length>1?L("Group direct message","Grup pesan langsung"):L("Direct message","Pesan langsung")}</span></div>`:`<span class="av sys md">${ic(c.restricted?"lock":"hash")}</span><div class="col grow"><h1 class="h3">${esc(c.name)}</h1><span class="caption muted">${esc(c.desc||"")}</span></div>`;
- const inv=chanCanInvite(c)?`<button class="btn btn-ghost btn-sm" data-a="ch-invite" data-c="${c.id}" aria-label="${L("Invite","Undang")}" data-tip="${chanInviteKind(c)==="share"?L("People you invite get access to the project","Orang yang Anda undang mendapat akses ke proyek"):L("Add people to this channel","Tambahkan orang ke channel ini")}">${ic("userplus")}<span class="chh-l">${L("Invite","Undang")}</span></button>`:"";
- const rows=ms.map((m,i)=>msgRow(c,m,i,null,{embedded})).join("");
- const log=rows?`<div class="day-sep">${L("Today","Hari ini")}</div>`+rows:`<div class="empty" style="align-self:center">${ill("empty")}<h2 class="h2">${L("Start the conversation","Mulai percakapan")}</h2><p>${L("Send the first message. Type {T-xxx} to link a task.","Kirim pesan pertama. Ketik {T-xxx} untuk menautkan tugas.")}</p></div>`;
- return `<div class="chat" style="${embedded?"flex:1":""}"><div class="chat-main"><header class="chat-h">${head}${relTag(2)}${inv}${!embedded&&c.kind==="project"?`<button class="btn btn-ghost btn-sm" data-a="proj" data-pid="${c.pid}" data-tab="daftar" aria-label="${L("Open project","Buka proyek")}">${ic("board")}<span class="chh-l">${L("Open project","Buka proyek")}</span></button>`:""}${!embedded?`<button class="btn btn-ghost btn-sm icon-btn" data-a="mtoggle" aria-pressed="${S.membersPanel}" aria-label="${L("Channel members","Anggota channel")}" data-tip="${L("Members","Anggota")}">${ic("users")}</button>`:""}</header>
- <div class="log" role="log" aria-label="${L("Messages in","Pesan")} ${esc(c.name)}" id="chatlog">${log}</div>
- <div class="chat-comp"><div class="box">${stageHtml(c)}<label class="sr" for="chat-in">${L("Write a message to","Tulis pesan ke")} ${esc(c.name)}</label><textarea id="chat-in" rows="1" data-c="${c.id}">${esc(S.draft[c.id]||"")}</textarea><div class="bar"><button class="btn btn-ghost btn-xs icon-btn" data-a="att-add" data-c="${c.id}" aria-haspopup="menu" aria-label="${L("Attach","Lampirkan")}" data-tip="${L("Attach image, video, file or link","Lampirkan gambar, video, file, atau tautan")}">${ic("clip",14)}</button><button class="btn btn-ghost btn-xs icon-btn" data-a="ch-mention" data-c="${c.id}" aria-label="${L("Mention someone","Sebut orang")}" aria-haspopup="menu" data-tip="${L("Mention someone","Sebut orang")}">${ic("at",14)}</button><button class="btn btn-ghost btn-xs icon-btn" data-a="ch-task" aria-label="${L("Link task","Tautkan tugas")}" aria-haspopup="menu" data-tip="${L("Link task","Tautkan tugas")}">${ic("link",14)}</button><span class="grow"></span><span class="caption muted" style="margin-right:8px">${L("Enter to send, Shift+Enter for a new line","Enter untuk kirim, Shift+Enter untuk baris baru")}</span><button class="btn btn-primary btn-sm icon-btn" data-a="chatsend" aria-label="${L("Send message","Kirim pesan")}">${ic("send")}</button></div></div></div></div>
- ${!embedded&&S.thread&&S.thread.c===c.id?threadPane(c):!embedded&&S.membersPanel?membersHtml(c):""}</div>`;};
-threadPane=function(c){const m=MSGS[c.id][S.thread.i];if(!m){S.thread=null;return"";}const rs=m.replies||[];const live=rs.filter(x=>!x.deleted).length;
- return `<aside class="members thread" aria-label="${L("Thread","Utas")}"><div class="ph-head"><h2 class="h3 grow">${L("Thread","Utas")}</h2><button class="btn btn-ghost btn-sm icon-btn" data-a="thread-close" aria-label="${L("Close thread","Tutup utas")}">${ic("x")}</button></div><div class="body thr-body">${msgRow(c,m,S.thread.i,null,{inThread:true})||`<p class="caption muted">${L("This message was deleted.","Pesan ini dihapus.")}</p>`}<div class="day-sep">${L(`${live} ${live===1?"reply":"replies"}`,`${live} balasan`)}</div>${rs.map((x,j)=>msgRow(c,x,S.thread.i,j,{inThread:true})).join("")}</div><div class="chat-comp" style="padding:12px"><div class="box"><label class="sr" for="thr-in">${L("Reply in thread","Balas di utas")}</label><textarea id="thr-in" rows="1"></textarea><div class="bar"><span class="grow"></span><button class="btn btn-primary btn-sm icon-btn" data-a="thr-send" aria-label="${L("Send reply","Kirim balasan")}">${ic("send")}</button></div></div></div></aside>`;};
-/* ---- sending with attachments; links in text become previews ---- */
-chatSend=function(){const i=$("#chat-in");if(!i)return;const v=i.value.trim();const id=i.dataset.c;const st=S.stage[id]||[];if(!v&&!st.length)return;
- const att=[...st];(v.match(URL_RE)||[]).slice(0,3).forEach(u=>{if(!att.some(a=>a.type==="link"&&a.url===u)){const l=linkAtt(u);if(l)att.push(l);}});
- (MSGS[id]=MSGS[id]||[]).push({who:S.me,at:"Baru saja",t:v,att});S.stage[id]=[];S.draft[id]="";render();const l=$("#chatlog");if(l)l.scrollTop=l.scrollHeight;$("#chat-in")?.focus();announce(L("Message sent.","Pesan terkirim."));};
-ACT.chatsend=chatSend;
-document.addEventListener("input",e=>{if(e.target.id==="chat-in")S.draft[e.target.dataset.c]=e.target.value;});
-function stageAdd(cid,items){const st=S.stage[cid]=S.stage[cid]||[];const room=ATT_MAX-st.length;if(items.length>room)toast(L(`Up to ${ATT_MAX} attachments per message.`,`Maksimal ${ATT_MAX} lampiran per pesan.`),"error");st.push(...items.slice(0,Math.max(0,room)));render();requestAnimationFrame(()=>$("#chat-in")?.focus());announce(L(`${Math.min(items.length,room)} attachments ready to send.`,`${Math.min(items.length,room)} lampiran siap dikirim.`));}
-function pickFiles(cid,accept){const inp=document.createElement("input");inp.type="file";inp.multiple=true;if(accept)inp.accept=accept;
- inp.onchange=()=>{const ok=[];for(const f of inp.files){const kind=f.type.startsWith("image/")?"image":f.type.startsWith("video/")?"video":"file";const lim=(kind==="video"?VID_MB:ATT_MB)*1048576;
-  if(f.size>lim){toast(L(`${f.name} is larger than ${kind==="video"?VID_MB:ATT_MB} MB.`,`${f.name} lebih besar dari ${kind==="video"?VID_MB:ATT_MB} MB.`),"error");continue;}
-  ok.push({type:kind,name:f.name,size:f.size,url:URL.createObjectURL(f)});}if(ok.length)stageAdd(cid,ok);};inp.click();}
-function linkDlg(cid){openDlg(dlg({title:L("Add link","Tambah tautan"),size:"sm",body:`<div class="field"><label class="label" for="ln-u">${L("Link","Tautan")}</label><input class="input" id="ln-u" type="url" inputmode="url" autocomplete="off" aria-describedby="ln-h"><span class="help" id="ln-h">${L("A preview with a thumbnail is shown in the message.","Pratinjau dengan thumbnail tampil di pesan.")}</span></div>`,foot:`<button class="btn btn-ghost" data-a="close">${L("Cancel","Batal")}</button><button class="btn btn-primary" data-a="ln-go" data-c="${cid}">${L("Add link","Tambah tautan")}</button>`}));setTimeout(()=>$("#ln-u")?.focus(),30);}
-/* ---- invite ---- */
-function chanInviteDlg(c){const inn=chanPeople(c);const cand=MEMBERS.filter(m=>m.status==="aktif"&&!inn.includes(m.k));
- openDlg(dlg({title:L(`Invite to #${c.name}`,`Undang ke #${c.name}`),body:`<p class="muted sm">${L("Invited people can read the whole history and post in this channel. They get a notification.","Orang yang diundang bisa membaca seluruh riwayat dan menulis di channel ini. Mereka mendapat notifikasi.")}</p>${cand.length?`<fieldset class="inv-list"><legend class="sr">${L("Organization members","Anggota organisasi")}</legend>${cand.map(m=>`<label class="inv-row"><input type="checkbox" value="${m.k}" data-a="inv-pick">${av(m.k)}<span class="col grow minw0"><span class="sm ell" data-notr>${esc(m.name)}</span><span class="caption muted ell" data-notr>${esc(m.title||m.email||"")}</span></span></label>`).join("")}</fieldset>`:`<p class="sm">${L("Everyone in the organization is already in this channel.","Semua anggota organisasi sudah ada di channel ini.")}</p>`}`,foot:`<button class="btn btn-ghost" data-a="close">${L("Cancel","Batal")}</button><button class="btn btn-primary" data-a="inv-go" data-c="${c.id}" disabled>${L("Invite","Undang")}</button>`}));}
-/* ---- DM ---- */
-function openDM(k){if(k===S.me)return;let c=CHANNELS.find(x=>x.kind==="dm"&&x.who.length===1&&dmWho(x)[0]===k);
- if(!c){c={id:"dm-"+k+"-"+uid(),name:pname(k),kind:"dm",who:[k],unread:0};CHANNELS.push(c);MSGS[c.id]=[];}
- S.chat=c.id;S.thread=null;S.msgEdit=null;closeOv(true);go("chat");setTimeout(()=>$("#chat-in")?.focus(),30);}
-/* ---- edit / delete / copy ---- */
-function copyText(t,msg){try{navigator.clipboard&&navigator.clipboard.writeText(t).catch(()=>{});}catch(e){}toast(msg);}
-function startEdit(c,i,r){S.msgEdit=msgKey(c,i,r);render();requestAnimationFrame(()=>{const t=$("#msg-ed");if(t){t.focus();t.setSelectionRange(t.value.length,t.value.length);}});}
-function saveEdit(el){const {c,i,r}=el.dataset;const m=msgAt(c,i,r);const t=$("#msg-ed");if(!m||!t)return;const v=t.value.trim();
- if(!v&&!(m.att||[]).length){toast(L("A message can't be empty. Delete it if you no longer need it.","Pesan tidak boleh kosong. Hapus pesan bila tidak diperlukan lagi."),"error");t.focus();return;}
- if(v!==m.t){m.t=v;m.edited=true;}S.msgEdit=null;render();announce(L("Message edited.","Pesan diedit."));const b=$(`#m-${c}-${i}${r===""?"":"-"+r} .who-n`);b&&b.focus();}
-function delMsg(c,i,r){const m=msgAt(c,i,r);if(!m)return;const own=m.who===S.me;const ch=CHANNELS.find(x=>x.id===c);
- confirmDlg({title:L("Delete this message?","Hapus pesan ini?"),body:own?L("It is removed for everyone in this conversation. This can't be undone.","Pesan dihapus untuk semua orang di percakapan ini. Tindakan ini tidak bisa dibatalkan."):L(`You are deleting a message by ${pname(m.who)} as an admin. This is recorded in Audit and can't be undone.`,`Anda menghapus pesan ${pname(m.who)} sebagai admin. Tindakan ini tercatat di Audit dan tidak bisa dibatalkan.`),verb:L("Delete message","Hapus pesan"),fn:()=>{
-  if(S.msgEdit===msgKey(c,i,r))S.msgEdit=null;
-  if(r===""||r==null){Object.assign(m,{deleted:true,t:"",att:[],rx:{}});}else{MSGS[c][+i].replies.splice(+r,1);}
-  if(!own)AUDIT.unshift({at:`${fDY(NOW)} ${fT(NOW)}`,who:pname(S.me),act:`Menghapus pesan ${pname(m.who)} di ${ch?chName(ch):c}`,cat:"Chat"});
-  render();toast(L("Message deleted.","Pesan dihapus."));}});}
-function toggleRx(c,i,r,emo){const m=msgAt(c,i,r);if(!m)return;const rx=m.rx=m.rx||{};const who=rx[emo]=rx[emo]||[];const k=who.indexOf(S.me);if(k>=0)who.splice(k,1);else who.push(S.me);if(!who.length)delete rx[emo];
- render();announce(k>=0?L(`Reaction ${emo} removed.`,`Reaksi ${emo} dihapus.`):L(`Reacted with ${emo}.`,`Bereaksi dengan ${emo}.`));const b=$(`#m-${c}-${i}${r===""||r==null?"":"-"+r} [data-a="rx"][data-e="${emo}"]`)||$(`#m-${c}-${i}${r===""||r==null?"":"-"+r} [data-a="rx-pick"]`);b&&b.focus();}
-Object.assign(ACT,{
- "att-add":el=>{const cid=el.dataset.c;openMenu(el,[{l:L("Image or video","Gambar atau video"),icon:"image",fn:()=>pickFiles(cid,"image/*,video/*")},{l:L("File","File"),icon:"file",fn:()=>pickFiles(cid,"")},{l:L("Link","Tautan"),icon:"link",fn:()=>linkDlg(cid)}],{w:220});},
- "st-rm":el=>{const st=S.stage[el.dataset.c]||[];const x=st.splice(+el.dataset.j,1)[0];if(x&&x.url&&x.url.startsWith("blob:"))URL.revokeObjectURL(x.url);render();$("#chat-in")?.focus();},
- "ln-go":el=>{const u=($("#ln-u")||{}).value?.trim()||"";const a=/^https?:\/\/[^\s.]+\.[^\s]+$/.test(u)&&linkAtt(u);if(!a){chatFieldErr("ln-u","ln-h",L("Enter a link that starts with https://","Masukkan tautan yang diawali https://"));return;}closeOv(true);stageAdd(el.dataset.c,[a]);},
- "att-view":el=>{const m=msgAt(el.dataset.c,el.dataset.i,el.dataset.r);const x=m&&m.att[+el.dataset.j];if(!x)return;S.ovTrigger=el instanceof Element?el:document.activeElement;setOv(`<div class="scrim" data-a="scrim"><div class="dlg lb" role="dialog" aria-modal="true" aria-label="${esc(x.name)}"><header class="lb-h"><span class="sm ell grow" data-notr>${esc(x.name)}</span><span class="caption muted nowrap">${fSize(x.size)}</span><button class="btn btn-ghost btn-sm icon-btn" data-a="close" aria-label="${L("Close","Tutup")} (Esc)">${ic("x")}</button></header><div class="lb-b"><img src="${x.url}" alt="${esc(x.name)}"></div></div></div>`);setTimeout(()=>$("#ov .lb [data-a=close]")?.focus(),20);},
- "rx-pick":el=>{const {c,i,r}=el.dataset;openMenu(el,EMO().map(([e,n])=>({l:n,html:`<span class="emo" aria-hidden="true">${e}</span>`,fn:()=>toggleRx(c,i,r,e)})),{w:200});},
- rx:el=>toggleRx(el.dataset.c,el.dataset.i,el.dataset.r,el.dataset.e),
- "msg-more":el=>{const {c,i,r}=el.dataset;const m=msgAt(c,i,r);if(!m)return;const ch=CHANNELS.find(x=>x.id===c);const own=m.who===S.me;const canDel=own||isAdmin();
-  const items=[{l:L("Copy text","Salin teks"),icon:"copy",fn:()=>copyText(msgPlain(m),L("Message copied.","Pesan disalin."))},{l:L("Copy link to message","Salin tautan pesan"),icon:"link",fn:()=>copyText(`https://agere.id/${ORG.slug}/c/${c}#m${i}${r===""?"":"-"+r}`,L("Link copied.","Tautan disalin."))}];
-  const inDmWith=ch&&ch.kind==="dm"&&dmWho(ch).length===1&&dmWho(ch)[0]===m.who;
-  if(!own&&!inDmWith)items.push("sep",{l:L(`Message ${first(m.who)}`,`Kirim pesan ke ${first(m.who)}`),icon:"chat",fn:()=>openDM(m.who)});
-  if(own||canDel)items.push("sep");if(own)items.push({l:L("Edit message","Edit pesan"),icon:"pen",fn:()=>startEdit(c,i,r)});if(canDel)items.push({l:L("Delete message","Hapus pesan"),icon:"trash",danger:true,fn:()=>delMsg(c,i,r)});
-  openMenu(el,items,{w:240});},
- "msg-ed-save":el=>saveEdit(el),
- "msg-ed-cancel":()=>{const k=S.msgEdit;S.msgEdit=null;render();if(k){const [c,i,r]=k.split("|");const b=$(`#m-${c}-${i}${r===""?"":"-"+r} .who-n`);b&&b.focus();}},
- person:el=>{const k=el.dataset.k;if(k===S.me)return;const mm=MEMBERS.find(x=>x.k===k)||{};openMenu(el,[{label:pname(k)},...(mm.title?[{label:mm.title}]:[]),{l:L("Send message","Kirim pesan"),icon:"chat",fn:()=>openDM(k)},{l:L("Mention in this conversation","Sebut di percakapan ini"),icon:"at",fn:()=>{const t=$("#chat-in");if(!t)return;t.value=(t.value?t.value.replace(/\s*$/," "):"")+`@${pname(k)} `;S.draft[t.dataset.c]=t.value;t.focus();}}],{w:240});},
- "dm-open":el=>openDM(el.dataset.k),
- "ch-invite":el=>{const c=CHANNELS.find(x=>x.id===el.dataset.c);if(!c)return;if(chanInviteKind(c)==="share")shareDlg(c.pid,null,{chat:true});else chanInviteDlg(c);},
- "inv-pick":()=>{const n=$$('#ov [data-a="inv-pick"]:checked').length;const b=$('#ov [data-a="inv-go"]');if(b){b.disabled=!n;b.textContent=n?L(`Invite ${n}`,`Undang ${n}`):L("Invite","Undang");}},
- "inv-go":el=>{const c=CHANNELS.find(x=>x.id===el.dataset.c);const ks=$$('#ov [data-a="inv-pick"]:checked').map(x=>x.value);if(!c||!ks.length)return;
-  c.extra=[...new Set([...(c.extra||[]),...ks])];(MSGS[c.id]=MSGS[c.id]||[]).push({sys:"invite",by:S.me,ks,at:"Baru saja"});
-  ks.forEach(k=>NOTIFS.unshift({id:"n"+uid(),to:k,unread:true,kind:"Anggota",icon:"userplus",actor:S.me,html:`<b>${esc(pname(S.me))}</b> menambahkan Anda ke <b>#${esc(c.name)}</b>`,at:new Date(NOW.getTime()),target:["chat",c.id],forme:true}));
-  closeOv(true);render();toast(L(`${ks.length} ${ks.length===1?"person":"people"} added to #${c.name}.`,`${ks.length} orang ditambahkan ke #${c.name}.`));}
-});
-/* keyboard: inline edit saves with Enter and cancels with Esc (before the global Esc handler) */
-document.addEventListener("keydown",e=>{if(e.target.id!=="msg-ed")return;
- if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();saveEdit(e.target);}else if(e.key==="Escape"){e.preventDefault();e.stopImmediatePropagation();ACT["msg-ed-cancel"]();}},true);
-
-function chatFieldErr(id,hid,msg){const i=$("#"+id),h=$("#"+hid);if(!i||!h)return;i.setAttribute("aria-invalid","true");h.textContent=msg;h.classList.add("err");i.focus();}
-/* notifications can open a conversation */
-{const _n=ACT.nopen;ACT.nopen=el=>{const n=NOTIFS.find(x=>x.id===el.dataset.id);if(n&&n.target&&n.target[0]==="chat"){n.unread=false;S.chat=n.target[1];S.thread=null;go("chat");return;}_n(el);};}
-/* a conversation opens at its latest message; re-renders (reactions, edits) keep the reading position */
-{const _r=render;render=function(){const l=$("#chatlog");const was=l?{cid:($("#chat-in")||{}).dataset?.c,top:l.scrollTop,bottom:l.scrollHeight-l.scrollTop-l.clientHeight<40}:null;_r();
- const n=$("#chatlog");if(!n)return;const cid=($("#chat-in")||{}).dataset?.c;const keep=was&&was.cid===cid&&!was.bottom;
- /* applied after later layers (translation) and again when images finish loading, which both change the height */
- const apply=()=>{const x=$("#chatlog");if(!x)return;x.scrollTop=keep?was.top:x.scrollHeight;};apply();requestAnimationFrame(apply);
- if(!keep)n.querySelectorAll("img").forEach(im=>{if(!im.complete)im.addEventListener("load",()=>{const x=$("#chatlog");if(x&&x.scrollHeight-x.scrollTop-x.clientHeight<200)x.scrollTop=x.scrollHeight;},{once:true});});};}
-
 /* ================= v15 · Kelola full version ================= */
 CH.imgup=el=>{const f=el.files[0];if(!f)return;const org=el.dataset.t==="org";const max=org?1048576:2097152;
  if(!/\.(png|svg|jpe?g|webp)$/i.test(f.name)){toast("Format belum didukung. Gunakan PNG, JPG, SVG, atau WebP.",{err:true});return;}
@@ -3597,8 +3387,7 @@ const TR_ATTR=["aria-label","title","data-tip","alt","placeholder"];
 const trDone=new WeakMap();   /* node -> last translated value: English output is never translated again */
 const trAttr=(e,a)=>{const v=e.getAttribute(a);if(!v)return;const d=trDone.get(e)||{};if(d[a]===v)return;const k=v.trim();if(trCS&&trCS.has(k))return;const t=trStr(k);if(t!==k){e.setAttribute(a,t);d[a]=t;trDone.set(e,d);}};
 function trNode(n){if(S.lang!=="en")return;
- if(n.nodeType===3){const p=n.parentElement;if(!p||p.closest(NOTR))return;const v=n.nodeValue;const k=v.trim();if(trCS&&trCS.has(k))return;   /* exact content (titles, descriptions) is never translated */if(k&&/^\d{1,2}\.\d{2}$/.test(k)){if(trDone.get(n)!==v){n.nodeValue=v.replace(k,k.replace(".",":"));trDone.set(n,n.nodeValue);}return;}   /* 09.52 → 09:52 in English */
- if(!k||/^[\d\s.,:%/+\-–—·()]+$/.test(k))return;if(trDone.get(n)===v)return;const t=trStr(k);if(t!==k){n.nodeValue=v.replace(k,t);trDone.set(n,n.nodeValue);}return;}
+ if(n.nodeType===3){const p=n.parentElement;if(!p||p.closest(NOTR))return;const v=n.nodeValue;const k=v.trim();if(trCS&&trCS.has(k))return;   /* exact content (titles, descriptions) is never translated */if(!k||/^[\d\s.,:%/+\-–—·()]+$/.test(k))return;if(trDone.get(n)===v)return;const t=trStr(k);if(t!==k){n.nodeValue=v.replace(k,t);trDone.set(n,n.nodeValue);}return;}
  if(n.nodeType!==1||n.closest&&n.closest("[data-notr]"))return;
  if(n.getAttribute)for(const a of TR_ATTR)trAttr(n,a);
  const w=document.createTreeWalker(n,NodeFilter.SHOW_ELEMENT|NodeFilter.SHOW_TEXT);let c;
@@ -4087,9 +3876,6 @@ i18nNest(["Tim {0}","{0} Mei {1}","{0} Agu {1}","{0} Okt {1}","{0} Des {1}","{0}
 i18nNest(["{0}, Tim {1}, {2}"]);
 i18nAdd({"{0} sampai {1}":"{0} to {1}","{0} dipilih":"{0} selected","{0} dokumen di {1} folder.":"{0} docs in {1} folders.","Buka navigasi":"Open navigation","Diperbarui":"Updated","Diperbarui {0}":"Updated {0}","Ditagih otomatis setiap tanggal 1":"Billed automatically on the 1st of each month","Faktur dikirim ke {0}":"Invoices go to {0}","Sembunyikan panel (Ctrl+B)":"Hide panel (Ctrl+B)","Sembunyikan panel · Ctrl B":"Hide panel · Ctrl B","Tampilkan panel (Ctrl+B)":"Show panel (Ctrl+B)","Tampilkan panel · Ctrl B":"Show panel · Ctrl B","Setiap hari 08.00":"Every day 08:00","Setiap Senin 08.00":"Every Monday 08:00","Setiap Jumat 16.00":"Every Friday 16:00","Awal bulan 08.00":"Start of month 08:00","Sisa waktu":"Time left","Tanggal":"Date","Waktu":"Time","sampai":"to","{0}, {1} jam lalu":"{0}, {1} hours ago"});
 (()=>{[["{0} sampai {1}",/^(\d{1,2} [A-Za-z]{3}(?: \d{4})?) sampai (\d{1,2} [A-Za-z]{3} \d{4})$/],["{0} dipilih",/^(\d+) dipilih$/],["{0} dokumen di {1} folder.",/^(\d+) dokumen di (\d+) folder\.$/],["{0}, {1} jam lalu",/^(.+?), (\d+) jam lalu$/],["Diperbarui {0}",/^Diperbarui (\d{1,2} [A-Za-z]{3}(?: \d{4})?)$/]].forEach(([k,re])=>{const p=I18P.find(x=>x[2]===k);if(p)p[0]=re;});})();
-i18nAdd({"menambahkan Anda ke":"added you to","Menghapus pesan {0} di {1}":"Deleted a message by {0} in {1}","Chat":"Chat"});
-
-i18nAdd({"Tulis SOP, brief, atau notulen di satu tempat dengan Doc baru di kanan atas. Punya dokumen di tempat lain? Pilih Impor.":"Write SOPs, briefs or notes in one place with New doc at the top right. Have documents elsewhere? Choose Import."});
 
 /* ================= Panduan content ================= */
 const HOWTO={

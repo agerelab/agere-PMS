@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>agere/org · Prototipe v18.5</title>
+<title>agere/org · Prototipe v18.4</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -2022,7 +2022,7 @@ function renderDock(){
   <label class="row" style="justify-content:space-between"><span>Label rilis di layar</span><button class="switch" role="switch" aria-checked="${S.relTags}" data-a="pp-tags" aria-label="Label rilis"></button></label>
   <label class="row" style="justify-content:space-between"><span>Mode organisasi baru (onboarding)</span><button class="switch" role="switch" aria-checked="${S.welcome}" data-a="pp-welcome" aria-label="Mode organisasi baru"></button></label>
   <button class="btn btn-outline" data-a="audit-sheet">${ic("sparkles")}Lihat catatan audit & redesign</button>
- </div>`:""}<div class="pdock"><span class="pd" aria-hidden="true"></span><span>Prototipe v18.5</span><button data-a="dock" aria-expanded="${S.dock}">${S.dock?"Tutup":"Kontrol"}</button><button data-a="audit-sheet">Audit</button></div>`;
+ </div>`:""}<div class="pdock"><span class="pd" aria-hidden="true"></span><span>Prototipe v18.4</span><button data-a="dock" aria-expanded="${S.dock}">${S.dock?"Tutup":"Kontrol"}</button><button data-a="audit-sheet">Audit</button></div>`;
 }
 
 /* ---------- guide (Panduan) ---------- */
@@ -2299,12 +2299,12 @@ function confirmDlg({title,body,verb,fn,danger=true,input}){
 IN.cfin=el=>{$("#cf-go").disabled=el.value.trim()!==el.dataset.need;};
 
 /* ---------- share (Bagikan) ---------- */
-function shareDlg(pid,sid,o={}){
+function shareDlg(pid,sid){
  const p=pid?projById(pid):null,s=sid?spaceById(sid):spaceById(p.space);
  const view=p?({daftar:"Daftar",papan:"Papan",ringkasan:"Ringkasan",kalender:"Kalender",timeline:"Timeline"}[S.p.tab]||"Daftar"):null;
  const org=p?(p.access!=="team"&&s.access==="org"):s.access==="org";
  const ks=p?projMembers(p):MEMBERS.filter(m=>m.status==="aktif"&&spaceView(s,m.k)).map(m=>m.k);
- openDlg(dlg({title:o.chat&&p?L("Share project","Bagikan proyek"):p?"Bagikan tampilan ini":"Bagikan space",desc:o.chat&&p?L(`People in this channel are the people who can open ${esc(p.name)}.`,`Anggota channel ini adalah orang yang bisa membuka ${esc(p.name)}.`):p?`Dibagikan sebagai satu tampilan: ${esc(p.name)}, ${view}`:`Proyek di ${esc(s.name)} ikut akses ini`,body:`
+ openDlg(dlg({title:p?"Bagikan tampilan ini":"Bagikan space",desc:p?`Dibagikan sebagai satu tampilan: ${esc(p.name)}, ${view}`:`Proyek di ${esc(s.name)} ikut akses ini`,body:`
  <div class="row gap12"><span class="av sys md">${ic("link")}</span><div class="col grow"><span class="strong">Tautan privat</span><span class="caption muted">Hanya bisa dibuka anggota yang sudah punya akses</span></div><button class="btn btn-outline btn-sm" data-a="copylink">${ic("copy")}Salin tautan</button></div>
  <div style="border-top:1px solid var(--border-default);padding-top:16px;display:grid;gap:10px"><span class="h3">Bagikan dengan</span>
  <div class="row gap12 card flat" style="padding:12px 14px"><span class="av md" style="border-radius:8px">${initials(ORG.name)}</span><div class="col grow"><span class="row"><span class="strong">${ORG.name}</span><span class="badge sm outline">Anggota organisasi</span></span><button class="btn-link caption" style="text-decoration:none;color:var(--fg-subtle)" data-a="share-list">${org?"Semua anggota bisa mengedit":`${ks.length} orang punya akses`}. Lihat daftar</button></div>${avs(ks)}<button class="switch" role="switch" aria-checked="${org}" data-a="share-org" data-pid="${pid||""}" data-sid="${sid||""}" aria-label="Bagikan dengan seluruh ${ORG.name}"></button></div>
@@ -2603,7 +2603,7 @@ ROUTES.chat.after=()=>{const l=$("#chatlog");if(l)l.scrollTop=l.scrollHeight;};
 ROUTES["doc-semua"]={sec:"doc",t:"Semua Doc",crumbs:()=>[["Doc","doc-semua"],["Semua Doc"]],f:pDocs};
 ROUTES.doc={sec:"doc",t:"Doc",title:()=>{const d=DOCS.find(d=>d.id===S.p.did);return d?docTitle(d):"Doc";},crumbs:()=>{const d=DOCS.find(x=>x.id===S.p.did);if(!d)return[["Doc"]];const f=FOLDERS.find(x=>x.id===d.folder);return[["Doc","doc-semua"],...(f?[[f.name,"doc-semua"]]:[]),[docTitle(d)]];},f:pDoc};
 function pDocs(){
- const st=stateOf({skel:"table",what:"Doc",empty:{ill:"empty",title:"Belum ada Doc",desc:"Tulis SOP, brief, atau notulen di satu tempat dengan Doc baru di kanan atas. Punya dokumen di tempat lain? Pilih Impor."}});   /* header already holds Impor and Doc baru (D32: one action, one place) */
+ const st=stateOf({skel:"table",what:"Doc",empty:{ill:"empty",title:"Belum ada Doc",desc:"Tulis SOP, brief, atau notulen di satu tempat. Punya dokumen di tempat lain? Impor saja.",action:`<button class="btn btn-outline" data-a="doc-import">${ic("upload")}Impor</button><button class="btn btn-primary" data-a="doc-new">${ic("plus")}Doc baru</button>`}});
  const grp=[...FOLDERS.map(f=>({f,ds:DOCS.filter(d=>d.folder===f.id)})),{f:{id:null,name:"Tanpa folder"},ds:DOCS.filter(d=>!d.folder)}].filter(g=>g.ds.length);
  return `<div class="page">${pageHead("Semua Doc",isIdeal()?`${DOCS.length} dokumen di ${FOLDERS.length} folder.`:"",`<button class="btn btn-outline" data-a="doc-import">${ic("upload")}Impor</button><button class="btn btn-primary" data-a="doc-new">${ic("plus")}Doc baru</button>`,{tags:relTag(3)})}
  ${st||`<div class="card tbl-wrap"><table class="tbl"><thead><tr><th>Nama</th><th>Terkait proyek</th><th>Pemilik</th><th>Diperbarui</th><th class="c-act"><span class="sr">Tindakan</span></th></tr></thead>${grp.map(g=>`<tbody><tr><th colspan="5" scope="rowgroup" style="background:var(--bg-muted);height:36px"><span class="row gap4">${ic(g.f.id?"folder":"doc",14)}${esc(g.f.name)} <span class="count">${g.ds.length}</span></span></th></tr>${g.ds.map(d=>`<tr><td><button class="row strong" style="text-align:left" data-go="doc" data-did="${d.id}">${ic("doc")}<span>${esc(docTitle(d))}</span>${srcExt(d)?`<span class="badge sm outline">${srcExt(d)}</span>`:""}</button></td><td>${d.projects.length?`<span class="row gap4">${d.projects.map(pid=>projById(pid)).filter(p=>p&&canView(p)).map(p=>`<span data-tip="${esc(p.name)}">${ptile(p)}</span>`).join("")}</span>`:'<span class="muted">Tidak ada</span>'}</td><td><span class="row">${av(d.by)}${esc(first(d.by))}</span></td><td class="muted">${d.at}</td><td class="c-act"><button class="btn btn-ghost icon-btn tiny" data-a="docmenu" data-did="${d.id}" aria-haspopup="menu" aria-label="Tindakan ${esc(d.name)}">${ic("more",14)}</button></td></tr>`).join("")}</tbody>`).join("")}</table></div>`}</div>`;
@@ -3251,7 +3251,7 @@ Object.assign(P,{
 S.stage={};S.draft={};S.msgEdit=null;
 const ATT_MAX=10,ATT_MB=25,VID_MB=25;   /* PRD-07 rule 3: ≤ 25 MB per file [Hypothesis]; a higher video limit is open (PRD-14 v1.5 Q7) */
 const URL_RE=/https?:\/\/[^\s<>"']+[^\s<>"'.,;:!?)]/g;
-const fSize=b=>{if(b==null)return"";if(b<1024)return `${b} B`;const u=b<1024*1024?[b/1024,"KB"]:[b/1048576,"MB"];const n=u[0]<10?Math.round(u[0]*10)/10:Math.round(u[0]);return `${String(n).replace(".",S.lang==="en"?".":",")} ${u[1]}`;};
+const fSize=b=>{if(b==null)return"";const u=b<1024*1024?[b/1024,"KB"]:[b/1048576,"MB"];const n=u[0]<10?Math.round(u[0]*10)/10:Math.round(u[0]);return `${String(n).replace(".",S.lang==="en"?".":",")} ${u[1]}`;};
 const fExt=n=>(n.split(".").pop()||"").slice(0,4).toUpperCase();
 /* ---- demo previews (a real server unfurls Open Graph data; see PRD-14 v1.5) ---- */
 const svgUri=s=>"data:image/svg+xml;utf8,"+encodeURIComponent(s);
@@ -3291,8 +3291,8 @@ function msgRow(c,m,i,r,o={}){
  return `<div class="msg ${editing?"editing":""}" id="m-${c.id}-${i}${r==null?"":"-"+r}"><button class="av-btn" data-a="person" data-k="${m.who}" tabindex="-1" aria-hidden="true">${av(m.who,"md")}</button><div class="grow minw0"><div class="who"><button class="who-n" data-a="person" data-k="${m.who}" aria-haspopup="menu">${esc(pname(m.who))}</button><span>${esc(m.at)}</span>${m.edited?`<span class="caption muted">${L("(edited)","(diedit)")}</span>`:""}</div>${body}${editing?"":attHtml(m,c.id,i,r)}${editing?"":rxHtml(m,c.id,i,r)}${thr}</div>${bar}</div>`;}
 function stageHtml(c){const st=S.stage[c.id]||[];if(!st.length)return"";
  return `<ul class="stage" aria-label="${L("Attachments to send","Lampiran yang akan dikirim")}">${st.map((x,j)=>`<li class="st-i">${x.type==="image"?`<img src="${x.url}" alt="">`:`<span class="st-ic" aria-hidden="true">${ic(x.type==="video"?"video":x.type==="link"?"link":"file",16)}</span>`}<span class="col minw0"><span class="sm ell" data-notr>${esc(x.type==="link"?x.domain:x.name)}</span><span class="caption muted ell">${x.type==="link"?esc(x.title):fSize(x.size)}</span></span><button class="btn btn-ghost btn-xs icon-btn" data-a="st-rm" data-c="${c.id}" data-j="${j}" aria-label="${L("Remove","Hapus")} ${esc(x.type==="link"?x.url:x.name)}">${ic("x",14)}</button></li>`).join("")}</ul>`;}
-function membersHtml(c){const ppl=chanPeople(c);   /* Undang lives in the channel header only (D32) */
- return `<aside class="members" aria-label="${L("Members","Anggota")}"><div class="ph-head"><h2 class="h3 grow">${L("Members","Anggota")}</h2><span class="caption muted num">${ppl.length}</span></div><div class="body">${ppl.map(k=>`<div class="mem-row">${av(k)}<span class="grow ell sm">${esc(pname(k))}${k===S.me?` ${L("(you)","(Anda)")}`:""}</span>${k!==S.me?`<button class="btn btn-ghost btn-xs icon-btn" data-a="dm-open" data-k="${k}" aria-label="${L("Message","Kirim pesan ke")} ${esc(pname(k))}" data-tip="${L("Send message","Kirim pesan")}">${ic("chat",14)}</button>`:""}</div>`).join("")}</div></aside>`;}
+function membersHtml(c){const ppl=chanPeople(c);const inv=chanCanInvite(c);
+ return `<aside class="members" aria-label="${L("Members","Anggota")}"><div class="ph-head"><h2 class="h3 grow">${L("Members","Anggota")}</h2><span class="caption muted num">${ppl.length}</span></div>${inv?`<div class="mem-inv"><button class="btn btn-outline btn-sm" data-a="ch-invite" data-c="${c.id}">${ic("userplus")}${chanInviteKind(c)==="share"?L("Invite to project","Undang ke proyek"):L("Invite people","Undang orang")}</button></div>`:""}<div class="body">${ppl.map(k=>`<div class="mem-row">${av(k)}<span class="grow ell sm">${esc(pname(k))}${k===S.me?` ${L("(you)","(Anda)")}`:""}</span>${k!==S.me?`<button class="btn btn-ghost btn-xs icon-btn" data-a="dm-open" data-k="${k}" aria-label="${L("Message","Kirim pesan ke")} ${esc(pname(k))}" data-tip="${L("Send message","Kirim pesan")}">${ic("chat",14)}</button>`:""}</div>`).join("")}</div></aside>`;}
 chatPane=function(c,embedded){
  const ms=MSGS[c.id]||[];
  const head=c.kind==="project"?`${ptile(projById(c.pid))}<div class="col grow"><h1 class="h3">${esc(c.name)}</h1><span class="caption muted">${L("Project channel, follows project access","Channel proyek, mengikuti akses proyek")}</span></div>`:c.kind==="dm"?`${dmWho(c).length>1?`<span class="avs">${dmWho(c).slice(0,2).map(k=>av(k)).join("")}</span>`:av(dmWho(c)[0],"md")}<div class="col grow"><h1 class="h3">${esc(chName(c))}</h1><span class="caption muted">${c.who.length>1?L("Group direct message","Grup pesan langsung"):L("Direct message","Pesan langsung")}</span></div>`:`<span class="av sys md">${ic(c.restricted?"lock":"hash")}</span><div class="col grow"><h1 class="h3">${esc(c.name)}</h1><span class="caption muted">${esc(c.desc||"")}</span></div>`;
@@ -3355,7 +3355,7 @@ Object.assign(ACT,{
  "msg-ed-cancel":()=>{const k=S.msgEdit;S.msgEdit=null;render();if(k){const [c,i,r]=k.split("|");const b=$(`#m-${c}-${i}${r===""?"":"-"+r} .who-n`);b&&b.focus();}},
  person:el=>{const k=el.dataset.k;if(k===S.me)return;const mm=MEMBERS.find(x=>x.k===k)||{};openMenu(el,[{label:pname(k)},...(mm.title?[{label:mm.title}]:[]),{l:L("Send message","Kirim pesan"),icon:"chat",fn:()=>openDM(k)},{l:L("Mention in this conversation","Sebut di percakapan ini"),icon:"at",fn:()=>{const t=$("#chat-in");if(!t)return;t.value=(t.value?t.value.replace(/\s*$/," "):"")+`@${pname(k)} `;S.draft[t.dataset.c]=t.value;t.focus();}}],{w:240});},
  "dm-open":el=>openDM(el.dataset.k),
- "ch-invite":el=>{const c=CHANNELS.find(x=>x.id===el.dataset.c);if(!c)return;if(chanInviteKind(c)==="share")shareDlg(c.pid,null,{chat:true});else chanInviteDlg(c);},
+ "ch-invite":el=>{const c=CHANNELS.find(x=>x.id===el.dataset.c);if(!c)return;if(chanInviteKind(c)==="share")shareDlg(c.pid);else chanInviteDlg(c);},
  "inv-pick":()=>{const n=$$('#ov [data-a="inv-pick"]:checked').length;const b=$('#ov [data-a="inv-go"]');if(b){b.disabled=!n;b.textContent=n?L(`Invite ${n}`,`Undang ${n}`):L("Invite","Undang");}},
  "inv-go":el=>{const c=CHANNELS.find(x=>x.id===el.dataset.c);const ks=$$('#ov [data-a="inv-pick"]:checked').map(x=>x.value);if(!c||!ks.length)return;
   c.extra=[...new Set([...(c.extra||[]),...ks])];(MSGS[c.id]=MSGS[c.id]||[]).push({sys:"invite",by:S.me,ks,at:"Baru saja"});
@@ -3597,8 +3597,7 @@ const TR_ATTR=["aria-label","title","data-tip","alt","placeholder"];
 const trDone=new WeakMap();   /* node -> last translated value: English output is never translated again */
 const trAttr=(e,a)=>{const v=e.getAttribute(a);if(!v)return;const d=trDone.get(e)||{};if(d[a]===v)return;const k=v.trim();if(trCS&&trCS.has(k))return;const t=trStr(k);if(t!==k){e.setAttribute(a,t);d[a]=t;trDone.set(e,d);}};
 function trNode(n){if(S.lang!=="en")return;
- if(n.nodeType===3){const p=n.parentElement;if(!p||p.closest(NOTR))return;const v=n.nodeValue;const k=v.trim();if(trCS&&trCS.has(k))return;   /* exact content (titles, descriptions) is never translated */if(k&&/^\d{1,2}\.\d{2}$/.test(k)){if(trDone.get(n)!==v){n.nodeValue=v.replace(k,k.replace(".",":"));trDone.set(n,n.nodeValue);}return;}   /* 09.52 → 09:52 in English */
- if(!k||/^[\d\s.,:%/+\-–—·()]+$/.test(k))return;if(trDone.get(n)===v)return;const t=trStr(k);if(t!==k){n.nodeValue=v.replace(k,t);trDone.set(n,n.nodeValue);}return;}
+ if(n.nodeType===3){const p=n.parentElement;if(!p||p.closest(NOTR))return;const v=n.nodeValue;const k=v.trim();if(trCS&&trCS.has(k))return;   /* exact content (titles, descriptions) is never translated */if(!k||/^[\d\s.,:%/+\-–—·()]+$/.test(k))return;if(trDone.get(n)===v)return;const t=trStr(k);if(t!==k){n.nodeValue=v.replace(k,t);trDone.set(n,n.nodeValue);}return;}
  if(n.nodeType!==1||n.closest&&n.closest("[data-notr]"))return;
  if(n.getAttribute)for(const a of TR_ATTR)trAttr(n,a);
  const w=document.createTreeWalker(n,NodeFilter.SHOW_ELEMENT|NodeFilter.SHOW_TEXT);let c;
@@ -4088,8 +4087,6 @@ i18nNest(["{0}, Tim {1}, {2}"]);
 i18nAdd({"{0} sampai {1}":"{0} to {1}","{0} dipilih":"{0} selected","{0} dokumen di {1} folder.":"{0} docs in {1} folders.","Buka navigasi":"Open navigation","Diperbarui":"Updated","Diperbarui {0}":"Updated {0}","Ditagih otomatis setiap tanggal 1":"Billed automatically on the 1st of each month","Faktur dikirim ke {0}":"Invoices go to {0}","Sembunyikan panel (Ctrl+B)":"Hide panel (Ctrl+B)","Sembunyikan panel · Ctrl B":"Hide panel · Ctrl B","Tampilkan panel (Ctrl+B)":"Show panel (Ctrl+B)","Tampilkan panel · Ctrl B":"Show panel · Ctrl B","Setiap hari 08.00":"Every day 08:00","Setiap Senin 08.00":"Every Monday 08:00","Setiap Jumat 16.00":"Every Friday 16:00","Awal bulan 08.00":"Start of month 08:00","Sisa waktu":"Time left","Tanggal":"Date","Waktu":"Time","sampai":"to","{0}, {1} jam lalu":"{0}, {1} hours ago"});
 (()=>{[["{0} sampai {1}",/^(\d{1,2} [A-Za-z]{3}(?: \d{4})?) sampai (\d{1,2} [A-Za-z]{3} \d{4})$/],["{0} dipilih",/^(\d+) dipilih$/],["{0} dokumen di {1} folder.",/^(\d+) dokumen di (\d+) folder\.$/],["{0}, {1} jam lalu",/^(.+?), (\d+) jam lalu$/],["Diperbarui {0}",/^Diperbarui (\d{1,2} [A-Za-z]{3}(?: \d{4})?)$/]].forEach(([k,re])=>{const p=I18P.find(x=>x[2]===k);if(p)p[0]=re;});})();
 i18nAdd({"menambahkan Anda ke":"added you to","Menghapus pesan {0} di {1}":"Deleted a message by {0} in {1}","Chat":"Chat"});
-
-i18nAdd({"Tulis SOP, brief, atau notulen di satu tempat dengan Doc baru di kanan atas. Punya dokumen di tempat lain? Pilih Impor.":"Write SOPs, briefs or notes in one place with New doc at the top right. Have documents elsewhere? Choose Import."});
 
 /* ================= Panduan content ================= */
 const HOWTO={
