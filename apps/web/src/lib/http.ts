@@ -1,3 +1,4 @@
+import { appUrl } from "./app-url";
 import { HttpError } from "./context";
 import { TokenCipherError } from "./crypto/token-cipher";
 
@@ -22,7 +23,12 @@ export function handle<A extends unknown[]>(fn: (...a: A) => Promise<Response>) 
 export function assertSameOrigin(req: Request) {
   const origin = req.headers.get("origin");
   if (!origin) return; // non-browser clients (curl, server-to-server) send no Origin
-  const allowed = new URL(process.env.APP_URL ?? req.url).origin;
+  let allowed: string;
+  try {
+    allowed = new URL(appUrl()).origin;
+  } catch {
+    allowed = new URL(req.url).origin;
+  }
   if (origin !== allowed) throw new HttpError(403, "BAD_ORIGIN");
 }
 

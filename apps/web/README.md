@@ -2,7 +2,7 @@
 
 First application code for agere/org, built on the stack in TECH-01: a Next.js App Router monolith with one Postgres and Drizzle. The first module is **integrations**: an App Center like ClickUp's. Apps connect directly with each provider's OAuth 2.0 or API key, so there is no iPaaS (Zapier, Make, …) between them and no platform fee.
 
-The static prototype at the repo root (`index.html`) is unaffected. The current Vercel project still serves it from `./`. To deploy this app, create a second Vercel project with **Root Directory `apps/web`**.
+The static prototype at the repo root (`index.html`) is unaffected. The current Vercel project still serves it from `./`. To deploy this app, follow **[DEPLOY.md](DEPLOY.md)**: a second Vercel project with Root Directory `apps/web`, Postgres, and the environment variables listed there.
 
 ## Run it
 
@@ -12,7 +12,7 @@ cp .env.example .env.local        # fill DATABASE_URL, INTEGRATION_ENCRYPTION_KE
 npm install
 npm run db:migrate                # applies db/migrations/*.sql once each
 npm run dev                       # http://localhost:3000/app-center
-npm test                          # 56 tests on PGlite (in-memory Postgres)
+npm test                          # 65 tests on PGlite (in-memory Postgres)
 ```
 
 Generate the encryption key with `openssl rand -base64 32`. Register each OAuth app with this redirect URI:
@@ -56,9 +56,10 @@ All 17 apps can **connect and disconnect**. Tokens are stored, refreshed, and re
 | `GET/POST /api/v1/integrations/github/repositories` | admin | List repos / install the webhook |
 | `GET /api/v1/integrations/google-drive/picker-session` | member | The member's own short-lived token + picker key |
 | `GET/POST /api/v1/tasks/:taskId/attachments`, `DELETE …/:linkId` | member | Task links (Drive files, PRs, commits) |
-| `GET /api/cron/integrations-refresh` | Vercel Cron (`CRON_SECRET`) | Refresh tokens expiring within 10 min |
+| `GET /api/cron/integrations-refresh` | Vercel Cron (`CRON_SECRET`) | Refresh tokens expiring within `CRON_REFRESH_WINDOW_MINUTES` |
+| `GET /api/health` | anyone | Database, encryption and config check (booleans only) |
 
-The token refresh runs every 5 minutes through Vercel Cron (`vercel.json`). On other hosts, use `npm run worker:refresh`. Rows are claimed with `FOR UPDATE SKIP LOCKED`, so several workers can run at once.
+The token refresh runs through Vercel Cron (`vercel.json`): once a day on Hobby, or every 5 minutes on Pro (see DEPLOY.md). Tokens are also refreshed on demand when used. On other hosts, use `npm run worker:refresh`. Rows are claimed with `FOR UPDATE SKIP LOCKED`, so several workers can run at once.
 
 ## Security notes
 

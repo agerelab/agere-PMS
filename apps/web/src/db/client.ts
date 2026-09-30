@@ -14,7 +14,9 @@ export function getDb(): Db {
   if (!db) {
     const url = process.env.DATABASE_URL;
     if (!url) throw new Error("DATABASE_URL is not set");
-    db = drizzle(postgres(url, { max: 10 }), { schema }) as unknown as Db;
+    // Serverless: few connections per instance, and no prepared statements so the app works
+    // behind transaction-mode poolers (Neon pooler, Supabase Supavisor/PgBouncer).
+    db = drizzle(postgres(url, { max: 5, prepare: false, idle_timeout: 20, connect_timeout: 10 }), { schema }) as unknown as Db;
   }
   return db;
 }

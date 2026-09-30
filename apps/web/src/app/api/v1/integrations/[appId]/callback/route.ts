@@ -1,4 +1,5 @@
 import { getDb } from "@/db/client";
+import { appUrl } from "@/lib/app-url";
 import { getOptionalContext } from "@/lib/context";
 import { handle } from "@/lib/http";
 import { completeOAuthCallback } from "@/modules/integrations/service";
@@ -12,7 +13,7 @@ export const GET = handle(async (req: Request, { params }: { params: Promise<{ a
   const { appId } = await params;
   const q = new URL(req.url).searchParams;
   const r = await completeOAuthCallback(getDb(), appId, { state: q.get("state"), code: q.get("code"), error: q.get("error") }, await getOptionalContext(req));
-  const back = new URL(r.redirectTo, process.env.APP_URL ?? req.url);
+  const back = new URL(r.redirectTo, appUrl());
   back.searchParams.set("integration", appId);
   back.searchParams.set("result", r.ok ? "connected" : "error");
   if (!r.ok) back.searchParams.set("code", r.code);
