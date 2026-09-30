@@ -1,5 +1,6 @@
 // Generic OAuth 2.0 authorization-code client (RFC 6749 + PKCE, RFC 7636) shared by every provider.
 import { createHash, randomBytes } from "node:crypto";
+import { appUrl } from "@/lib/app-url";
 import { oauthCredentials, type OAuthProvider } from "./registry";
 
 export type TokenSet = {
@@ -20,9 +21,7 @@ export const randomToken = (bytes = 32) => randomBytes(bytes).toString("base64ur
 export const sha256 = (v: string) => createHash("sha256").update(v).digest("base64url");
 
 export function redirectUri(appId: string) {
-  const base = process.env.APP_URL;
-  if (!base) throw new OAuthError("NOT_CONFIGURED", "APP_URL is not set");
-  return `${base.replace(/\/$/, "")}/api/v1/integrations/${appId}/callback`;
+  return `${appUrl()}/api/v1/integrations/${appId}/callback`;
 }
 
 export function buildAuthorizeUrl(appId: string, p: OAuthProvider, state: string, codeVerifier: string | null) {

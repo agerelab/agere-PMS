@@ -1,5 +1,6 @@
 // GitHub repository listing and one-click webhook install for the connected workspace.
 import type { Db } from "@/db/client";
+import { appUrl } from "@/lib/app-url";
 import { HttpError, requireAdmin, type RequestContext } from "@/lib/context";
 import { decryptSecret } from "@/lib/crypto/token-cipher";
 import * as repo from "../repository";
@@ -9,7 +10,7 @@ const GH = "https://api.github.com";
 const REPO_NAME = /^[A-Za-z0-9_.-]{1,100}\/[A-Za-z0-9_.-]{1,100}$/;
 const headers = (t: string) => ({ authorization: `Bearer ${t}`, accept: "application/vnd.github+json", "x-github-api-version": "2022-11-28" });
 
-export const webhookUrl = (orgId: string) => `${(process.env.APP_URL ?? "").replace(/\/$/, "")}/api/v1/webhooks/github/${orgId}`;
+export const webhookUrl = (orgId: string) => `${appUrl()}/api/v1/webhooks/github/${orgId}`;
 
 export async function listRepositories(db: Db, ctx: RequestContext) {
   const token = await getWorkspaceAccessToken(db, ctx.organizationId, "github");
